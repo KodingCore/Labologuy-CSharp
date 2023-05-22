@@ -126,40 +126,40 @@ public class ScriptLoguy : MonoBehaviour {
 		}
 	}
 
-    void FixedUpdate()
-    {
+void FixedUpdate()
+{
         if (Input.GetKey(KeyCode.Escape))
         {
-			//Application.Quit();
+		//Application.Quit();
         }
-		if(Input.GetKey(KeyCode.Space) && create && testHideMenu)
-		{
-			for(int i = 0; i < allParts.Count; i++)
-            {
-				Destroy(allParts[i]);
-			}
-
-			allParts.Clear();
-			partsNames.Clear();
-			partsPositions.Clear();
-			howMuch.SetActive(true);
-			testHideMenu = false;
-			create = false;
-			oK.name = "OK";
-			Camera.main.orthographic = true;
-            Camera.main.orthographicSize = orthographicSizeBasic;
-			transform.position = transformCameraBasic;
-			textTouches.SetActive(false);
+	if(Input.GetKey(KeyCode.Space) && create && testHideMenu)
+	{
+		for(int i = 0; i < allParts.Count; i++)
+        	{
+			Destroy(allParts[i]);
 		}
-	}
 
-    void Creation() {
-		stadeChoisitBas = "NonFait";
-		stadeChoisitGauche = "NonFait";
-		for (int y = 0; y < piecesCoteMax; y++)
-		{ //axe y (tant que y est inférieur à XYmax)
-			for (int x = 0; x < piecesCoteMax; x++)
-			{ //axe x (tant que x est inférieur à XYmax)
+		allParts.Clear();
+		partsNames.Clear();
+		partsPositions.Clear();
+		howMuch.SetActive(true);
+		testHideMenu = false;
+		create = false;
+		oK.name = "OK";
+		Camera.main.orthographic = true;
+            	Camera.main.orthographicSize = orthographicSizeBasic;
+		transform.position = transformCameraBasic;
+		textTouches.SetActive(false);
+	}
+}
+
+void Creation() {
+	stadeChoisitBas = "NonFait";
+	stadeChoisitGauche = "NonFait";
+	for (int y = 0; y < piecesCoteMax; y++)
+	{ //axe y (tant que y est inférieur à XYmax)
+		for (int x = 0; x < piecesCoteMax; x++)
+		{ //axe x (tant que x est inférieur à XYmax)
 				xPartPos = x * largeurPiece; //Poisition X de la nouvelle pièce
 				yPartPos = y * largeurPiece; //Position Y de la nouvelle pièce
 				partPositionRef = new Vector3(xPartPos, yPartPos, 5);
@@ -185,14 +185,14 @@ public class ScriptLoguy : MonoBehaviour {
 						if (stadeChoisitBas == "Commencer" || stadeChoisitBas == "Continuer")
 						{
 							if (stadeChoisitBas == "Commencer")
-                            {
+                            				{
 								randBreakEasyer = Random.Range(0, 2);
 								if (randBreakEasyer == 0)
-                                {
+                                				{
 									partNow = ImportParts[11]; //1100
 								}
-                                else
-                                {
+                                				else
+                                				{
 									partNow = ImportParts[7]; //1000
 								}
 								stadeChoisitBas = "Continuer";
@@ -327,7 +327,7 @@ public class ScriptLoguy : MonoBehaviour {
 							partNow = ImportParts[12];
 						}
 						if(y < piecesCoteMax - 3 || versPartNext)
-                        {
+                        			{
 							randBreakEasyer = Random.Range(0, 8);
 							if (versPartNext)
 							{
@@ -406,7 +406,7 @@ public class ScriptLoguy : MonoBehaviour {
 									partNow = ImportParts[8];//1001 pour la premiere
 									versPartNext = true;
 								}
-                            }
+                            				}
 						}
 					}
 					else if (x == piecesCoteMax - 1)
@@ -418,7 +418,7 @@ public class ScriptLoguy : MonoBehaviour {
 				newInstance.name = newInstance.name[0] + "" + newInstance.name[1] + "" + newInstance.name[2] + "" + newInstance.name[3];
 				partsNames.Add(newInstance.name);
 				partsPositions.Add(partPositionRef);
-                allParts.Add(newInstance);
+                		allParts.Add(newInstance);
 			}
 		}
 		//Ajuster la camera
@@ -428,10 +428,11 @@ public class ScriptLoguy : MonoBehaviour {
 		if(piecesCoteMax == 8)
 		{
 			zInteger = -32;
-        }
-        else if(piecesCoteMax == 16){
+        	}
+        	else if(piecesCoteMax == 16){
 			zInteger = -64;
-		}else if(piecesCoteMax == 32)
+		}
+		else if(piecesCoteMax == 32)
 		{
 			zInteger = -128;
 		}
@@ -450,7 +451,7 @@ public class ScriptLoguy : MonoBehaviour {
 		partForAnalyse.Add(0);
 		int i = 0;
 		for(int tampon = 0; partsTamponForAnalyse.Count < allParts.Count; tampon++)
-        {
+        	{
 			if (partsTamponForAnalyse.Count - 1 >= tampon)
 			{
 				if (partsNames[partsTamponForAnalyse[tampon]][0] == '1')
@@ -486,7 +487,7 @@ public class ScriptLoguy : MonoBehaviour {
 			if(i > allParts.Count)
 			{
 				break;
-            }
+            		}
 			i++;
 		}
 		bool contin;
@@ -494,23 +495,23 @@ public class ScriptLoguy : MonoBehaviour {
 		{
 			contin = false;
 			foreach (int numer in partsTamponForAnalyse)
-            {
+            		{
 				if (num == numer)
-                {
+                		{
 					contin = true;
 				}
-            }
+            		}
 			if(contin == false)
-            {
+            		{
 				partsInnaccessible.Add(num);
 			}
-        }
+        	}
 		Debug.Log(partsInnaccessible.Count);
 		return partsInnaccessible;
 	}
 
 	void Reaccess(List<int> innaccessList)
-    {
+    	{
 		GameObject partieTraitee;
 		GameObject partieCollegue;
 
@@ -523,11 +524,11 @@ public class ScriptLoguy : MonoBehaviour {
 		string nomOriginalCollegue;
 
 		if (innaccessList.Count > 0)
-        {
+        	{
 			partieTraitee = allParts[innaccessList[0]];
-            nomOriginalTraitee = partieTraitee.name;
+            		nomOriginalTraitee = partieTraitee.name;
 			if (innaccessList[0] % piecesCoteMax == 0) //C'est une piece de la premiere colonne
-            {
+            		{
 				nomOriginalTraitee = "" + nomOriginalTraitee[0] + nomOriginalTraitee[1] + nomOriginalTraitee[2] + "1";
 				Debug.Log("" + nomOriginalTraitee + "  " + innaccessList[0]);
 				numCollegue = innaccessList[0] - piecesCoteMax;
@@ -535,10 +536,9 @@ public class ScriptLoguy : MonoBehaviour {
 				nomOriginalCollegue = partieCollegue.name;
 				nomOriginalCollegue = "" + nomOriginalCollegue[0] + "1" + nomOriginalCollegue[2] + nomOriginalCollegue[3];
 			}
-            else
-            {
+            		else
+            		{
 				nomOriginalTraitee = "1"+nomOriginalTraitee[1]+nomOriginalTraitee[2]+nomOriginalTraitee[3];
-
 				numCollegue = innaccessList[0] - 1;
 				partieCollegue = allParts[numCollegue];
 				nomOriginalCollegue = partieCollegue.name;
@@ -547,7 +547,6 @@ public class ScriptLoguy : MonoBehaviour {
 
 			foreach (GameObject partsImportees in ImportParts)
 			{
-
 				if (partsImportees.name == nomOriginalTraitee)
 				{
 					nouvellePartiePrincipale = partsImportees;
@@ -556,7 +555,6 @@ public class ScriptLoguy : MonoBehaviour {
 				if (partsImportees.name == nomOriginalCollegue)
 				{
 					nouvellePartieCollegue = partsImportees;
-
 				}
 			}
 
@@ -584,5 +582,5 @@ public class ScriptLoguy : MonoBehaviour {
 			Destroy(partieCollegue);
 			
 		}
-    }
+    	}
 }
